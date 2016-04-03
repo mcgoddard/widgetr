@@ -1,0 +1,62 @@
+{% extends "layout.html" -%}
+{% block content -%}
+<div id="widget-container"></div>
+<script type="text/javascript">
+    // Hosts to access
+    var hosts;
+    // Function to run on page load
+    $(document).ready(function () {
+        var hosts = {{ hosts|safe }};
+        function widgetr() {
+            // Get container
+            var container = $('#widget-container');
+            // Get window size
+            var width = $(window).width();
+            var height = $(window).height();
+            // Get number of rows/columns
+            var columns = 2;
+            if (width > 1900) {
+                columns = 4;
+            }
+            else if (width > 1200) {
+                columns = 3;
+            }
+            var rows = 2;
+            if (height > 900) {
+                rows = 3;
+            }
+            // Clear frames
+            container.empty();
+            // Create iframes for widgets
+            for (var i = 0; i < rows; i++) {
+                var row = "<div class='row "
+                if (rows === 3) {
+                    row += "third-row";
+                }
+                else {
+                    row += "half-row";
+                }
+                row += "'>";
+                for (var j = 0; j < columns; j++) {
+                    row += "<div class='";
+                    if (columns === 4) {
+                        row += "col-md-3 ";
+                    }
+                    else if (columns === 3) {
+                        row += "col-md-4 ";
+                    }
+                    else {
+                        row += "col-md-6 ";
+                    }
+                    row += "frame-container'><iframe class='widget' src='"+hosts[(i*columns)+j]+"'></iframe></div>";
+                }
+                row += "</div>";
+                container.append(row);
+            }
+            // Call again on a timer
+            setTimeout(widgetr, 60000);
+        }
+        widgetr();
+    });
+</script>
+{% endblock -%}
