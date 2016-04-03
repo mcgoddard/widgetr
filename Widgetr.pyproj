@@ -31,6 +31,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="runserver.py" />
+    <Compile Include="Widgetr\data_access_layer.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Widgetr\__init__.py" />
     <Compile Include="Widgetr\views.py" />
   </ItemGroup>
@@ -44,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
+    <Content Include="Widgetr\schema.sql" />
     <Content Include="Widgetr\static\content\bootstrap.css" />
     <Content Include="Widgetr\static\content\bootstrap.min.css" />
     <Content Include="Widgetr\static\content\site.css" />

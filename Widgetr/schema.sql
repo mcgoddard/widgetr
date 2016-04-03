@@ -1,0 +1,1 @@
+create table hosts(hostname varchar(10));
