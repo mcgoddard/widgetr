@@ -1,1 +1,1 @@
-create table hosts(hostname varchar(10));
+create table hosts(id INTEGER PRIMARY KEY AUTOINCREMENT, hostname varchar(10));

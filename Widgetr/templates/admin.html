@@ -5,7 +5,7 @@
 <div class="container body-content">
     <h1>Widgetr Admin Panel</h1>
     {% for host in hosts %}
-        <p>{{ host[0] }} <a href="/delete_host/{{ host[0]|e }}">Delete</a></p>
+        <p>{{ host[1] }} <a href="/delete_host/{{ host[0] }}">Delete</a></p>
     {% endfor %}
     <form method="post" action="">
         <input type="text" name="hostname" placeholder="Hostname" />

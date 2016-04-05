@@ -3,10 +3,9 @@
 <div id="widget-container"></div>
 <script type="text/javascript">
     // Hosts to access
-    var hosts;
+    var hosts = {{ hosts|safe }};
     // Function to run on page load
     $(document).ready(function () {
-        var hosts = {{ hosts|safe }};
         function widgetr() {
             // Get container
             var container = $('#widget-container');
@@ -48,7 +47,14 @@
                     else {
                         row += "col-md-6 ";
                     }
-                    row += "frame-container'><iframe class='widget' src='"+hosts[(i*columns)+j]+"'></iframe></div>";
+                    row += "frame-container'><iframe class='widget' src='"
+                    if ((i*columns)+j < hosts.length) {
+                        row += hosts[(i*columns)+j]
+                    }
+                    else {
+                        row += "/not-a-widget"
+                    }
+                    row += "'></iframe></div>";
                 }
                 row += "</div>";
                 container.append(row);

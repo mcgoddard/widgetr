@@ -6,16 +6,19 @@ from datetime import datetime
 from flask import request, render_template, redirect, url_for
 from Widgetr import app
 from Widgetr import data_access_layer
+import json
 
 @app.route('/')
 def widgetr():
     """Renders the widgetr page."""
     port = 56988
+    hosts = data_access_layer.select("hosts")
+    hostnames = [el[1] for el in hosts]
     return render_template(
         'widgetr.html',
         title='Widgetr',
         year=datetime.now().year,
-        hosts="[ 'http://localhost:"+str(port)+"/red','http://localhost:"+str(port)+"/green','http://localhost:"+str(port)+"/blue','http://localhost:"+str(port)+"/yellow','http://localhost:"+str(port)+"/orange','http://localhost:"+str(port)+"/pink','http://localhost:"+str(port)+"/purple','http://localhost:"+str(port)+"/brown','http://localhost:"+str(port)+"/turquoise','http://localhost:"+str(port)+"/white','http://localhost:"+str(port)+"/black','http://localhost:"+str(port)+"/grey' ]",
+        hosts=json.dumps(hostnames),
     )
 
 @app.route('/admin', methods=['POST'])
@@ -35,10 +38,10 @@ def admin():
         hosts = hosts
     )
 
-@app.route('/delete_host', methods=['GET'])
-def delete_host():
+@app.route('/delete_host/<int:host_id>', methods=['GET'])
+def delete_host(host_id):
     hostname = request.args.get('hostname')
-    data_access_layer.delete('hosts', 'hostname', hostname)
+    data_access_layer.delete('hosts', 'id', host_id)
     return redirect(url_for('admin'))
 
 
