@@ -52,6 +52,20 @@ html, body {
     width: 100%;
 }
 
+#not-a-widget-container {
+    height: 100%;
+    width: 100%;
+    background-color: darkslategrey;
+    color: white;
+    padding: 0px;
+    margin: 0px;
+}
+
+#widget-title {
+    margin:0px;
+    padding:0px;
+}
+
 .third-row {
     height: 33.2%;
     margin: 0px;

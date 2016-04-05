@@ -44,6 +44,9 @@ def delete_host(host_id):
     data_access_layer.delete('hosts', 'id', host_id)
     return redirect(url_for('admin'))
 
+@app.route('/not-a-widget', methods=['GET'])
+def not_a_widget():
+    return render_template('not-a-widget.html')
 
 @app.route('/home')
 def home():

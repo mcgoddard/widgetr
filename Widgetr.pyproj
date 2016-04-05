@@ -75,6 +75,7 @@
     <Content Include="Widgetr\templates\contact.html" />
     <Content Include="Widgetr\templates\index.html" />
     <Content Include="Widgetr\templates\layout.html" />
+    <Content Include="Widgetr\templates\not-a-widget.html" />
     <Content Include="Widgetr\templates\widgetr.html" />
   </ItemGroup>
   <ItemGroup>
